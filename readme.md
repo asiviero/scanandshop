@@ -81,6 +81,13 @@ If you introduce a feature, please also try to add a test so I don't break it la
 
 Some unit tests are provided in `tests` but more are to follow. They require `phpunit`. Run them using `make test`.
 
+## Acknowledgments
+
+Big thanks and kudos to:
+
+- @yuridelendik for [zbarjs](https://github.com/yurydelendik/zbarjs)
+- @jazzido for this [really cool gist](https://gist.github.com/jazzido/9435670)
+
 ## License
 
 Scan & Shop is licensed under the [AGPL](https://www.gnu.org/licenses/agpl-3.0.html)
