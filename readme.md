@@ -68,6 +68,7 @@ Homestead environment is easier to get going, although it's not required. Right 
 - Write more providers
 - User System
 - Hosted version
+- Choose between different cameras (e.g. mobile)
 
 Dependencies are managed by composer and npm, and gulp is used to generate CSS from sass files. When dealing with the CSS, it's recommended to run gulp in watch mode:
 
