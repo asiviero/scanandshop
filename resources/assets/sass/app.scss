@@ -1,0 +1,34 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+#newList {
+  margin-top: $line-height-computed;
+  margin-bottom: ($line-height-computed / 2);
+}
+
+#barcode-icon:hover {
+  cursor: pointer;
+}
+
+#barcode-scanner-wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 320px; height: 240px;
+}
+video { position: absolute; top: 0; left: 0; width: 320px; height: 240px; }
+div#inner {
+  position: absolute;
+  margin: 0 auto;
+  top: 0; left: 0;
+
+  width: 320px; height: 240px;
+  border: 30px solid rgba(64,64,64, 0.5);
+  z-index: 1000;
+}
+div#redline {
+  position: absolute;
+  top: 120px;
+  width: 320px;
+  height: 2px;
+  background-color: rgba(255, 0, 0, 0.3);
+  z-index: 1001;
+}
