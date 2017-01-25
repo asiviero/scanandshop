@@ -3,6 +3,7 @@
 namespace PretrashBarcode;
 
 use PretrashBarcode\Providers\UPCDatabase;
+use PretrashBarcode\Providers\SearchUPC;
 use Illuminate\Support\Facades\Log;
 
 class BarcodeSearch {
@@ -10,9 +11,9 @@ class BarcodeSearch {
   private $providerList;
 
   public function __construct() {
-    Log::error(env('UPCDATABASE_KEY'));
     $this->providerList = [
-        new UPCDatabase(env('UPCDATABASE_KEY'))
+        new UPCDatabase(env('UPCDATABASE_KEY')),
+        new SearchUPC(env('SEARCHUPC_KEY'))
       ];
   }
 

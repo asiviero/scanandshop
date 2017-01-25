@@ -9,7 +9,7 @@
         "laravel-doctrine/orm": "1.1.*",
         "laravel-doctrine/migrations": "1.0.*",
         "phpxmlrpc/phpxmlrpc": "4.0",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
