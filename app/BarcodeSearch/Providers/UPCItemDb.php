@@ -4,25 +4,19 @@ namespace PretrashBarcode\Providers;
 
 use GuzzleHttp\Client;
 
-class SearchUPC extends AbstractProvider {
-  private $key;
-
-  public function __construct($key) {
-    $this->key = $key;
-  }
+class UPCItemDb extends AbstractProvider {
 
   public function search($upc) {
     $client = new Client();
     $res = $client->request('GET',
       sprintf(
-        'http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=%s&upc=%s',
-        $this->key,
+        'https://api.upcitemdb.com/prod/trial/lookup?upc=%s',
         $upc
       ));
     $return = '';
     $body =  json_decode($res->getBody()->getContents(), true);
     if(count($body)) {
-      $return = $body[0]['productname'];
+      $return = $body['items'][0]['title'];
     }
     return $return;
   }

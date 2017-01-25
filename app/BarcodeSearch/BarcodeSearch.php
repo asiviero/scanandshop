@@ -4,6 +4,7 @@ namespace PretrashBarcode;
 
 use PretrashBarcode\Providers\UPCDatabase;
 use PretrashBarcode\Providers\SearchUPC;
+use PretrashBarcode\Providers\UPCItemDb;
 use Illuminate\Support\Facades\Log;
 
 class BarcodeSearch {
@@ -13,7 +14,8 @@ class BarcodeSearch {
   public function __construct() {
     $this->providerList = [
         new UPCDatabase(env('UPCDATABASE_KEY')),
-        new SearchUPC(env('SEARCHUPC_KEY'))
+        new SearchUPC(env('SEARCHUPC_KEY')),
+        new UPCItemDb()
       ];
   }
 
