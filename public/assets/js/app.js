@@ -29,6 +29,13 @@
       $('#barcode-icon').click(function(e) {
         $('#scan-camera').modal('toggle')
       });
+
+      $('input[name=default-mail]').change(function(e) {
+        $('input#send-mail').prop('disabled', $(this).is(':checked'))
+      })
+
+
+
       // Barcode related code
       $('#scan-camera').on('show.bs.modal', function() {
         initMedia()

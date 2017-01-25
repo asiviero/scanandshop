@@ -14,7 +14,9 @@ use Mail;
 
 use Entity\ProductList;
 use Entity\Product;
+use Entity\User;
 use EntityManager;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -22,11 +24,13 @@ class Controller extends BaseController
 
     public function show()
     {
+      $userId = Auth::id();
       $repository = app('em');
+      $user = $repository->getRepository(User::class)->findOneBy(['id' => $userId]);
       $repository = $repository->getRepository(ProductList::class);
-      $list = $repository->findOneBy([], ['id' => 'desc']);
+      $list = $repository->findOneBy(['user' => $user], ['id' => 'desc']);
       if(!$list) {
-        $list = new ProductList();
+        $list = new ProductList($user);
         app('em')->persist($list);
         app('em')->flush();
       }
@@ -59,17 +63,23 @@ class Controller extends BaseController
 
     public function newList(Request $request)
     {
-      $list = new ProductList();
+      $userId = Auth::id();
+      $repository = app('em');
+      $user = $repository->getRepository(User::class)->findOneBy(['id' => $userId]);
+      $list = new ProductList($user);
       app('em')->persist($list);
       app('em')->flush();
     }
 
     public function send(Request $request)
     {
+      $userId = Auth::id();
+      $repository = app('em');
+      $user = $repository->getRepository(User::class)->findOneBy(['id' => $userId]);
       $repository = app('em');
       $repository = $repository->getRepository(ProductList::class);
       $list = $repository->findOneBy(['id' => $request->input('list')], ['id' => 'desc']);
-      $mail = $request->input('mail');
+      $mail = $request->input('default-mail') ? $user->getEmail() : $request->input('mail');
       Mail::send('emails.list', ['list' => $list], function ($m) use ($mail) {
            $m->from('altsiviero@gmail.com', 'Andre Siviero');
            $m->to($mail, '')->subject('Shop List');

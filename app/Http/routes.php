@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', 'Controller@show');
-Route::post('/list/add', 'Controller@add');
-Route::post('/list/send', 'Controller@send');
-Route::post('/list/', 'Controller@newList');
-Route::post('/product/', 'ProductController@create');
+Route::get('/', 'Controller@show')->middleware('auth');;
+Route::post('/list/add', 'Controller@add')->middleware('auth');;
+Route::post('/list/send', 'Controller@send')->middleware('auth');;
+Route::post('/list/', 'Controller@newList')->middleware('auth');;
+Route::post('/product/', 'ProductController@create')->middleware('auth');;
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

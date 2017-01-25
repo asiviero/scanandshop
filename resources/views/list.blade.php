@@ -54,9 +54,15 @@
                       <div class="col-xs-12">
                         <div class="form-group">
                           <label for="send-mail">Send list to:</label>
-                          <input type="text" name="mail" id="send-mail" class="form-control" placeholder="youremail@mail.com" />
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="default-mail" checked> Send to user mail
+                            </label>
+                          </div>
+                          <input type="text" name="mail" id="send-mail" class="form-control" placeholder="youremail@mail.com" disabled />
                           <input type="hidden" name="list" value="{{ $list ->getId()}}" />
                         </div>
+
                       </div>
                       <div class="col-xs-3 col-xs-offset-9 text-right">
                         <button class="btn btn-lg">Send</button>

@@ -27,9 +27,17 @@ class ProductList
      */
     protected $products;
 
-    public function __construct()
+    /**
+     * Many Lists have One User.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="lists")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    public function __construct($user = null)
     {
         $this->products = new ArrayCollection();
+        $this->user = $user;
     }
 
     public function getId() {
