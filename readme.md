@@ -17,9 +17,9 @@ This is still a work in progress with not many providers for barcode to
 
 ## Limitations
 
-- No user system, only one list at a time
-- Only one barcode to product name provider implemented so far
-- Setting up requires a bit of command line
+- Only three barcode to product name providers implemented so far
+- Setting up requires a bit of command line, but with the user system in place there'll be a hosted
+version soon.
 
 ## Configuration
 
@@ -31,6 +31,8 @@ All API keys are stored in the `.env` file, at the end. E-mail is handled by
  Mailgun.
 
 1. [UPCDatabase](https://www.upcdatabase.com/xmlrpc.asp) - Create an account, then go to Account Info to retrieve the key.
+1. UPCItemDb - No need for key in trial mode.
+1. [SearchUPC](http://www.searchupc.com/) - Create an account, then retrieve your access token.
 1. [Mailgun](https://mailgun.com) - Create an account, set up a domain or use the sandbox domain.
 
 ## Setup
@@ -63,12 +65,11 @@ All the help is appreciated! :smile:
 
 Code, specially JS, is still kinda messy. As Laravel itself recommends, a
 Homestead environment is easier to get going, although it's not required. Right now my next steps are:
-
-- Improve testing, both functional and unit
-- Write more providers
-- User System
-- Hosted version
-- Choose between different cameras (e.g. mobile)
+- [x] User System
+- [ ] Hosted version
+- [ ] Choose between different cameras (e.g. mobile)
+- [ ] Improve testing, both functional and unit
+- [ ] Write more providers
 
 Dependencies are managed by composer and npm, and gulp is used to generate CSS from sass files. When dealing with the CSS, it's recommended to run gulp in watch mode:
 
