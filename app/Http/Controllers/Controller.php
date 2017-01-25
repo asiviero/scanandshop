@@ -25,6 +25,11 @@ class Controller extends BaseController
       $repository = app('em');
       $repository = $repository->getRepository(ProductList::class);
       $list = $repository->findOneBy([], ['id' => 'desc']);
+      if(!$list) {
+        $list = new ProductList();
+        app('em')->persist($list);
+        app('em')->flush();
+      }
       return view('list', ['list' => $list]);
     }
 
