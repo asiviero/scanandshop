@@ -4,6 +4,7 @@ namespace Entity;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="email_idx", columns={"email"})})

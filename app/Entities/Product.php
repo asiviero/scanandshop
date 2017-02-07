@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass="Repository\ProductRepository")
  */
 class Product
 {
@@ -27,13 +28,20 @@ class Product
     protected $name;
 
     /**
+    * @ORM\ManyToOne(targetEntity="User")
+    */
+    protected $user;
+
+    /**
     * @param $firstname
     * @param $lastname
+    * @param $user
     */
-    public function __construct($barcode, $name)
+    public function __construct($barcode, $name, $user = null)
     {
         $this->barcode = $barcode;
         $this->name  = $name;
+        $this->user = $user;
     }
 
     public function getId()
