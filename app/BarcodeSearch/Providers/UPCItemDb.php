@@ -13,7 +13,7 @@ class UPCItemDb extends AbstractProvider {
         'https://api.upcitemdb.com/prod/trial/lookup?upc=%s',
         $upc
       ));
-    $return = '';
+    $return = null;
     $body =  json_decode($res->getBody()->getContents(), true);
     if(count($body)) {
       $return = $body['items'][0]['title'];

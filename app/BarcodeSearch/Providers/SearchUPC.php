@@ -19,10 +19,10 @@ class SearchUPC extends AbstractProvider {
         $this->key,
         $upc
       ));
-    $return = '';
+    $return = null;
     $body =  json_decode($res->getBody()->getContents(), true);
     if(count($body)) {
-      $return = $body[0]['productname'];
+      $return = isset($body[0]['productname']) ? trim($body[0]['productname']) : null;
     }
     return $return;
   }
