@@ -7,13 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Entity\Product;
 use Entity\ProductList;
+use Illuminate\Support\Facades\Auth;
+use Entity\User;
 
 class ProductController extends Controller
 {
     public function create(Request $request) {
+      $userId = Auth::id();
+      $repository = app('em');
+      $user = $repository->getRepository(User::class)->findOneBy(['id' => $userId]);
       $prod = new Product(
         $request->input('barcode'),
-        $request->input('name')
+        $request->input('name'),
+        $user
       );
       app('em')->persist($prod);
       app('em')->flush();

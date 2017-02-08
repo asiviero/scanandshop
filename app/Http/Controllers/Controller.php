@@ -34,19 +34,21 @@ class Controller extends BaseController
         app('em')->persist($list);
         app('em')->flush();
       }
-      return view('list', ['list' => $list]);
+      return view('list', ['list' => $list, 'userId' => $user->getEmail()]);
     }
 
     public function add(Request $request)
     {
+      $userId = Auth::id();
       $repository = app('em');
+      $user = $repository->getRepository(User::class)->findOneBy(['id' => $userId]);
       $repository = $repository->getRepository(ProductList::class);
       $list = $repository->findOneBy(['id' => $request->input('list')], ['id' => 'desc']);
-      $prod = app('em')->getRepository(Product::class)->findOneBy(['barcode' => $request->input('product')], ['id' => 'desc']);
+      $prod = app('em')->getRepository(Product::class)->findOneByBarcode($request->input('product'), $user);
       if(!$prod) {
         $search = new BarcodeSearch();
         if($name = $search->search($request->input('product'))) {
-          $prod = new Product($request->input('product'), $name);
+          $prod = new Product($request->input('product'), $name, $user);
           app('em')->persist($prod);
           app('em')->flush();
         } else {
